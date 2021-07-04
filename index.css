@@ -11,7 +11,7 @@
 nav{
     background: #fff;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    height:12vh;
+    height:10vh;
 }
 
 
@@ -89,7 +89,7 @@ li:hover .Icon{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding:1rem;
+        padding:15px 0 0 0;
     }
 
     .nav-header{
@@ -114,6 +114,7 @@ li:hover .Icon{
 main{
     display: flex;
     align-items: center;
+   
 }
 
 .sideBar-fetch{
@@ -209,9 +210,9 @@ aside .tools.active{
 section{
     /* position: relative; */
     
-    height:80vh;
+    height:86vh;
     width:90vw;
-    margin-top:1rem ;
+    margin-top: 5px;
     border-radius: 0.3rem;
     box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
 }

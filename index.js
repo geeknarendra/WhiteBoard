@@ -28,13 +28,19 @@ sideBarfetch.addEventListener("click",()=>{
     toolsBar.classList.add("show")
 })
  
-cancel.addEventListener("click",()=>{
+
+
+// Slide ToolBar
+cancel.addEventListener("click",slideInTools)
+
+function slideInTools(){
     sideBarfetch.classList.remove("hide")
     tools.forEach((newTool)=>{
         newTool.classList.remove("active")
     })
     toolsBar.classList.remove("show")
-})
+}
+
 console.log(tools)
 
 tools.forEach((tool)=>{
@@ -117,7 +123,7 @@ function changeMode(mod){
 
 // Mouse  Down
 function startPaint(e) {
-
+    slideInTools();
     drawing = true;
     draw(e);
 }
