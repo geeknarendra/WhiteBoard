@@ -9,9 +9,9 @@
 
 
 nav{
-    background: #fff;
+    background: #0A1931;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    height:10vh;
+    /* height:12vh; */
 }
 
 
@@ -36,7 +36,7 @@ list-style-type:none;
 }
 
 .nav-toggle:hover{
-    color:hsl(205, 86%, 17%);
+    color:#fff;
     transform: rotate(90deg);
 }
 .logo{
@@ -51,7 +51,7 @@ list-style-type:none;
 }
 
 .links  .Icon{
-    color:#293B5F;
+    color:#fff;
     font-size: 1.5rem;
     
     margin:2rem;
@@ -64,10 +64,10 @@ list-style-type:none;
 }
 li{
     padding-bottom:20px;
+    margin-top: 0.5rem;
 }
 li:hover .Icon{
     color:#A19882;
-    font-size: 2rem;
 }
 
 
@@ -83,13 +83,16 @@ li:hover .Icon{
 }
 
 @media screen and (min-width:768px){
+    nav{
+        height:12vh;
+    }
     .nav-center{
         max-width: 1170px;
         margin: 0 auto;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding:15px 0 0 0;
+        padding:1rem;
     }
 
     .nav-header{
@@ -114,7 +117,6 @@ li:hover .Icon{
 main{
     display: flex;
     align-items: center;
-   
 }
 
 .sideBar-fetch{
@@ -209,16 +211,12 @@ aside .tools.active{
 }
 section{
     /* position: relative; */
-    
-    height:86vh;
+    cursor:crosshair;
+    height:83vh;
     width:90vw;
-    margin-top: 5px;
+    margin-top:1rem ;
     border-radius: 0.3rem;
     box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
-}
-
-#canvas{
-    cursor: crosshair;
 }
 
 
@@ -262,17 +260,14 @@ section{
        top:40%;
    }
     
-   section{
-    
-    height:80vh;
-    width:90vw;
-    margin-top:1rem ;
-    border-radius: 0.3rem;
-    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
-
-    
-}
-
+    section{
+        position:absolute;
+        top:120%;
+        left:5.5%;
+        height:65vh;
+        max-height: 650px;
+        
+    }
 }
 
 
@@ -565,4 +560,49 @@ width:100%
 
 .container-5{
     display: none;
+}
+
+.txt {
+    color: #ffffff;
+    background:#152947;
+    font-size:30px;
+    padding: 3px;
+    font-weight: bold;
+    font-family: Arial;
+    text-transform: uppercase;
+}
+.txt::before {
+    content: 'stack-team';
+    position: absolute;
+    mix-blend-mode: difference;
+    filter: blur(3px);
+}
+.neon-txt {
+    display:inline-flex;
+    filter: brightness(170%);
+    overflow: hidden;
+}
+.gradient{
+    background: linear-gradient(111.92830839701685deg, rgba(231, 244, 245,1) 5.533854166666667%,rgba(78, 240, 250,1) 96.67968749999999%);
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height:100%;
+    mix-blend-mode: multiply;
+}
+.dodge {
+    background: radial-gradient(circle,white,black 35%) center / 25% 25%;
+    position: absolute;
+    top:-100%;
+    left:-100%;
+    right:0;
+    bottom:0;
+    mix-blend-mode: color-dodge;
+    animation: dodge-area 5s linear infinite;
+}
+@keyframes dodge-area {
+    to {
+        transform: translate(50%,50%);
+    }
 }

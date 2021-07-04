@@ -1,3 +1,11 @@
+window.onload=function(){
+    var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
+    if (mobile) {
+        alert("Visit this on a Computer for Better View and Using Features");              
+    } 
+}
+
+
 // importing required components
 const toggleBtn=document.querySelector(".nav-toggle");
 const links=document.querySelector(".links");
@@ -70,6 +78,9 @@ const ctx = canvas.getContext('2d');
 
 // variable 
 let drawing = false;          // Drawing or not
+let history = [];
+let index = -1;
+
 
 
 
@@ -129,11 +140,14 @@ function startPaint(e) {
 }
 
 // MOuse UP
+
 function endPaint() {
     drawing = false;
     ctx.beginPath();
+    
+    history.push(ctx.getImageData(0, 0, 1382, 614));
+    index++;
 }
-
 // Gives Position Of Mouse
 function getMousePos(canvas, e) {
     var rect = canvas.getBoundingClientRect();
@@ -231,4 +245,18 @@ window.addEventListener('beforeunload', function (e) {
 //Events
 canvas.addEventListener("mousedown", startPaint);
 canvas.addEventListener("mouseup", endPaint);
-canvas.addEventListener("mousemove", draw)
+canvas.addEventListener("mousemove", draw);
+
+// Undo 
+const undo = document.getElementById("undo");
+undo.addEventListener("click", undoLastPoint);
+
+function undoLastPoint() {
+    if(index <= 0) {
+        clearCanvas();
+    } else {
+        index--;
+        history.pop();
+        ctx.putImageData(history[index], 0, 0);
+    }
+}
