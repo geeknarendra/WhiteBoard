@@ -172,7 +172,7 @@ function draw(e) {
         ctx.lineWidth = eraserWidth;
         ctx.strokeStyle =canvasColor;          // Earser Color Same as BAckgroung
 
-        ctx.globalCompositeOperation="source-over";
+        ctx.globalCompositeOperation="destination-out";
     
         ctx.lineTo(pos.x, pos.y)
         ctx.stroke();
