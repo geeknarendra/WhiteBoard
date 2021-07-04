@@ -216,6 +216,10 @@ section{
     box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
 }
 
+#canvas{
+    cursor: crosshair;
+}
+
 
 @media screen and (max-width:768px){
     
@@ -264,16 +268,10 @@ section{
     margin-top:1rem ;
     border-radius: 0.3rem;
     box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
-}
-/* canvas{
-   
-    height:80vh;
-    width:90vw;
-    margin-top:1rem ;
-    border-radius: 0.3rem;
-    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
 
-} */
+    
+}
+
 }
 
 

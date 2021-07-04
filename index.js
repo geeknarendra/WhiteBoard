@@ -10,6 +10,13 @@ const canvasSection=document.querySelector("#canvas")
 
 const bgColorDiv=document.querySelectorAll(".container-4 div")
 const colorInput=document.querySelector(".bg")
+const penColorInput=document.querySelector(".penColors");
+
+
+                 
+
+
+
 toggleBtn.addEventListener("click",()=>{
     links.classList.toggle('show-links');
 })
@@ -43,31 +50,9 @@ tools.forEach((tool)=>{
 })
 
 
-console.log(colorInput)
 
 
-
-
-bgColorDiv.forEach((color)=>{
-    color.addEventListener("click",()=>{
-        const c=color.getAttribute("class")
-        console.log(c)
-
-      canvasSection.style.backgroundColor=c
-    })
-})
-
-colorInput.addEventListener("blur",()=>{
-     console.log("clicked")
-     console.log(colorInput.value)
-     canvasSection.style.backgroundColor=colorInput.value
-})
-
-
-
-// Canvas
-
-
+// Canvas Code 
 
 const canvas = document.getElementById('canvas');
 canvas.style.width ='100%';
@@ -75,39 +60,75 @@ canvas.style.height='100%';
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 const ctx = canvas.getContext('2d');
-let drawing = false;
+
+
 // variable 
+let drawing = false;          // Drawing or not
 
 
 
 var pencolor="black"            // Pen Color
 var mode="pen"                  //Mode  pen or eraser
+var penwidth;                   // Pem Width
+var eraserWidth;                //Eraser Width
+var penColor="black";            //Pen Color                 Default is Black
+var eraserColor;                // Easer Color
+var canvasColor="white";   
+
+// Changing Canvas Backgroung Color;
+bgColorDiv.forEach((color)=>{
+    color.addEventListener("click",()=>{
+        canvasColor=color.getAttribute("class")
+        console.log(canvasColor)    
+      canvasSection.style.backgroundColor=canvasColor;
+    })
+})
+
+colorInput.addEventListener("blur",()=>{
+     console.log("clicked")
+     console.log(colorInput.value)
+     canvasColor=colorInput.value;
+     canvasSection.style.backgroundColor=canvasColor;
+})
+
+// Pencolor Change
+penColorInput.addEventListener("blur",()=>{
+     console.log("clicked")
+     console.log(penColorInput.value);
+     penColor=penColorInput.value;
+})
 
 
 
 
 
-function changeWidth(){
-    var penwidth=document.getElementById("penwidth").value; 
+// Changing Width
+function getWidth(){
+    penwidth=document.getElementById("penwidth").value; 
     eraserWidth=document.getElementById("eraserWidth").value; 
     
 }
+
+//Changing Mode
 function changeMode(mod){
     mode=mod;
 
 }
 
+// Mouse  Down
 function startPaint(e) {
 
     drawing = true;
     draw(e);
 }
 
+// MOuse UP
 function endPaint() {
     drawing = false;
     ctx.beginPath();
 }
 
+// Gives Position Of Mouse
 function getMousePos(canvas, e) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -115,6 +136,9 @@ function getMousePos(canvas, e) {
         y: (e.clientY - rect.top) / (rect.bottom - rect.top) * canvas.height
     };
 }
+
+
+// Mouse move In Canvas
 function draw(e) {
     if (!drawing) return
 
@@ -122,8 +146,11 @@ function draw(e) {
     ctx.lineWidth = penwidth;               //Line Width
     ctx.lineCap = "round";            //Line side cap
 
-    if(mode=="pen"){                            //Pen
+    if(mode=="pen"){   
+        getWidth()                         //Update Width
+        ctx.strokeStyle = penColor;          // Earser Color Same as BAckgroung
 
+        
         ctx.lineWidth = penwidth;  
         ctx.globalCompositeOperation="source-over";
     
@@ -133,11 +160,18 @@ function draw(e) {
         ctx.moveTo(pos.x, pos.y);
 
     }else{                                          //Earse 
+
         console.log("Using eraser");
-        ctx.globalCompositeOperation="destination-out";
-        
-        ctx.arc(pos.x, pos.y,eraserWidth,0,Math.PI*2,false);
-        ctx.fill();
+        getWidth();
+        ctx.lineWidth = eraserWidth;
+        ctx.strokeStyle =canvasColor;          // Earser Color Same as BAckgroung
+
+        ctx.globalCompositeOperation="source-over";
+    
+        ctx.lineTo(pos.x, pos.y)
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
 
  
     }
@@ -178,6 +212,13 @@ function clearCanvas() {
     }
 
 }
+
+// Reload,Tab Close or Browser Alert 
+window.addEventListener('beforeunload', function (e) {
+    e.preventDefault();
+    e.returnValue = '';
+});
+
 
 
 
