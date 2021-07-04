@@ -1,0 +1,569 @@
+/* clear browser margin and padding */
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    
+}
+
+
+
+nav{
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    height:12vh;
+}
+
+
+li{
+list-style-type:none;
+}
+
+.nav-header{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:1rem;
+}
+
+.nav-toggle{
+    font-size: 1.5rem;
+    color: hsl(205, 78%, 60%);
+    background: transparent;
+    border: transparent;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+
+.nav-toggle:hover{
+    color:hsl(205, 86%, 17%);
+    transform: rotate(90deg);
+}
+.logo{
+    height: 70px;
+
+    margin-top: -10px;
+}
+
+.link{
+    margin-right:0.2rem;
+    background-color: blanchedalmond;
+}
+
+.links  .Icon{
+    color:#293B5F;
+    font-size: 1.5rem;
+    
+    margin:2rem;
+    transform: scale(1);
+    transition: all 0.3s linear;
+}
+
+.Icon:last-child{
+    margin-right: 0rem;
+}
+li{
+    padding-bottom:20px;
+}
+li:hover .Icon{
+    color:#A19882;
+    font-size: 2rem;
+}
+
+
+.links{
+    height: 0;
+    overflow: hidden;
+    transition:all 0.3s linear;
+}
+
+.show-links{
+    height: 10rem;
+  
+}
+
+@media screen and (min-width:768px){
+    .nav-center{
+        max-width: 1170px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding:1rem;
+    }
+
+    .nav-header{
+        padding:0;
+    }
+
+    .nav-toggle{
+        display: none;
+    }
+
+    .links{
+        height: auto;
+        display:flex;
+    }
+
+    .links span:hover{
+        color:#A19882;
+    }
+   
+}
+
+main{
+    display: flex;
+    align-items: center;
+}
+
+.sideBar-fetch{
+    background:#0A1931;
+    color:#fff;
+    width: 2vw;
+    height:20vh;
+    border-top-right-radius:0.3rem ;
+    border-bottom-right-radius:0.3rem ;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.sideBar-fetch h3{
+    transform: rotate(-90deg);
+}
+
+.sideBar-fetch.hide{
+    display: none;
+}
+aside{
+    width:5vw;
+    height:80vh;
+    margin-top:1rem;
+    margin-left: 0.3rem;
+    border-radius: 0.5rem;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+    transform: translateX(-200%);
+    transition: all 0.3s linear;
+    /* margin-right: 1.7rem; */
+}
+
+
+aside.show{
+    margin-right: 2rem;
+    transform: translateX(10%);
+}
+
+
+aside .tools{
+    width:100%;
+    height:10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    border-radius:0.2rem ;
+    margin-top:0.2rem;
+    transform: scale(1);
+    transition: all 0.3s linear;
+}
+
+aside .tools:hover{
+    transform: scale(1.2);
+    transition: all 0.3s linear;
+    color:#FEF7DC;
+    background-color: #1b4588;
+}
+
+aside .tools.active{
+    color:#FEF7DC;
+    background-color: #0A1931;
+}
+
+.cancel{
+    font-size: 2rem;
+    color:red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: resize 1s linear infinite;
+    position: fixed;
+    bottom:1.5rem;
+    cursor: pointer;
+    width:100%;
+}
+
+
+@keyframes resize{
+    0%{
+        transform: scale(0.8);
+    }
+    50%{
+        transform: scale(1.2);
+    }
+    100%{
+        transform: scale(0.8);
+    }
+}
+section{
+    /* position: relative; */
+    
+    height:80vh;
+    width:90vw;
+    margin-top:1rem ;
+    border-radius: 0.3rem;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+}
+
+
+@media screen and (max-width:768px){
+    
+    main{
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+    }
+
+    aside{
+        display: flex;
+        width:90vw;
+        height:8vh;
+        margin-left: -5rem;
+    }
+
+    aside .tools{
+        width:15%;
+        margin-top:-1px;
+        height:100%;
+
+    }
+
+    .sideBar-fetch {
+        width:20vw;
+        height:5vh;
+        border-bottom-left-radius:0.3rem ;
+        border-bottom-right-radius:0.3rem ;  
+        border-top-right-radius: 0;
+    }
+    .sideBar-fetch h3{
+        transform: rotate(0deg);
+    }
+
+   .cancel{
+       position: fixed;
+       /* right:0.2rem; */
+       left:40vw;
+       top:40%;
+   }
+    
+   section{
+    
+    height:80vh;
+    width:90vw;
+    margin-top:1rem ;
+    border-radius: 0.3rem;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+}
+/* canvas{
+   
+    height:80vh;
+    width:90vw;
+    margin-top:1rem ;
+    border-radius: 0.3rem;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+
+} */
+}
+
+
+.container-2{
+    display: none;
+    transition: all .3s ease;
+}
+.pencil.active ~ .container-2
+{
+    position: absolute;
+    display: inline-flex;
+    flex-direction: column;
+    border: .5px solid black;
+    background-color: #fff;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+    left:5.1rem;
+    top:-0.1rem;
+    width:3.5rem;
+    padding:0.3rem;
+    border-radius: 0.5rem;
+    transition: all .3s ease;
+}
+.pencil.active~ .triangle{
+    z-index: 100;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 0 10px 12px;
+    border-color: transparent transparent transparent gray;
+    display: inline-block;
+    /* margin-bottom: 10px; */
+    margin-left: 0px;
+    position: absolute;
+    top:10px;
+    left:100%;
+    transform:rotate(-180deg);
+    transition: all .3s ease;
+
+}
+.pencil.active:hover~ .triangle{
+    left:110%;
+    transition: all .3s ease;
+}
+.pencil.active:hover~ .container-2{
+    left:5.4rem;
+    transition: all .3s ease;
+}
+.number{
+    margin-bottom: 1rem;
+    height:2rem;
+    font-size:1.5rem;
+    outline: none;
+}
+.colors{
+    margin-top: 1rem;
+    cursor: pointer;
+}
+.triangle{
+  display: none;
+}
+
+.shapes.active~.container-3{
+    position: absolute;
+    display: inline-flex;
+    flex-direction: column;
+    border: .5px solid black;
+    background-color: #fff;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+    left:4.5rem;
+    margin-top:-3.2rem;
+    margin-left:0.6rem;
+    width:5rem;
+    padding:0.3rem;
+    border-radius: 0.5rem;
+    transition: all .3s ease;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.shapes.active~.triangle3{
+     z-index: 100;
+     width: 0;
+     height: 0;
+     border-style: solid;
+     border-width: 10px 0 10px 12px;
+     border-color: transparent transparent transparent gray;
+     display: inline-block;
+     /* margin-bottom: 10px; */
+     margin-left: 0px;
+     position: absolute;
+     /* top:; */
+     /* bottom:2rem; */
+     margin-top:-2.5rem;
+     left:100%;
+     transform:rotate(-180deg);
+     transition: all .3s ease;
+}
+
+.shape.active:hover~ .triangle3{
+    margin-left:2rem;
+    transition: all .3s ease;
+    background-color: brown;
+}
+
+.shapes.active~.container-3 div{
+    background-color: #0A1931;
+    width:100%;
+    height:20%;
+    margin-top:0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0.6rem;
+    border-radius: 0.5rem;
+    color:white;
+    cursor: pointer;
+}
+
+.square{
+    font-size: 1.5rem;
+    
+}
+
+.shapes.active~.container-3 .rectangle div{
+    padding-bottom:0.1rem;
+    width:2.5rem;
+    height:0.8rem;
+    border:0.15rem solid white;
+    margin-bottom: 1rem;
+    border-radius: 0;
+}
+
+.circle{
+    font-size: 1.5rem;
+}
+
+
+.shapes.active~.container-3 .ellipse div{
+    width:2rem;
+    height:0.5rem;
+    border: 0.2rem solid #fff;
+    margin-bottom: 1rem;
+    border-radius: 50%;
+}
+
+.container-3{
+    display: none;
+}
+
+
+
+.color.active~.container-4{
+    position: absolute;
+    display: inline-flex;
+    flex-direction: column;
+    border: .5px solid black;
+    background-color: #fff;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+    left:4.5rem;
+    margin-top:-3.2rem;
+    margin-left:0.6rem;
+    width:5rem;
+    padding:0.3rem;
+    border-radius: 0.5rem;
+    transition: all .3s ease;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.color.active~.triangle4{
+     z-index: 100;
+     width: 0;
+     height: 0;
+     border-style: solid;
+     border-width: 10px 0 10px 12px;
+     border-color: transparent transparent transparent gray;
+     display: inline-block;
+     /* margin-bottom: 10px; */
+     margin-left: 0px;
+     position: absolute;
+     /* top:; */
+     /* bottom:2rem; */
+     margin-top:-2.5rem;
+     left:100%;
+     transform:rotate(-180deg);
+     transition: all .3s ease;
+}
+
+.color.active:hover~ .triangle4{
+    left:110%;
+    transition: all .3s ease;
+    
+}
+
+.color.active:hover~ .container-4{
+    left:5rem;
+    transition: all .3s ease;
+}
+.color.active~.container-4 div{
+    width:100%;
+    height:20%;
+    margin-top:0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0.6rem;
+    border-radius: 0.5rem;
+    color:white;
+    cursor: pointer;
+}
+
+
+.color.active~.container-4 .black{
+  background-color: black;
+}
+.color.active~.container-4 .red{
+  background-color: red;
+}
+.color.active~.container-4 .green{
+  background-color: green;
+}
+.color.active~.container-4 .yellow{
+  background-color: yellow;
+}
+.color.active~.container-4 .blue{
+  background-color: blue;
+  margin-bottom: 1rem;
+}
+
+.container-4{
+    display: none;
+}
+
+
+.eraser.active~.container-5{
+    position: absolute;
+    display: inline-flex;
+    flex-direction: column;
+    border: .5px solid black;
+    background-color: #fff;
+    box-shadow: 2px 3px 7px 1px rgba(0,0,0,0.63);
+    left:4.5rem;
+    margin-top:-3.2rem;
+    margin-left:0.6rem;
+    width:5rem;
+    padding:0.3rem;
+    border-radius: 0.5rem;
+    transition: all .3s ease;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.eraser.active~.triangle5{
+     z-index: 100;
+     width: 0;
+     height: 0;
+     border-style: solid;
+     border-width: 10px 0 10px 12px;
+     border-color: transparent transparent transparent gray;
+     display: inline-block;
+     /* margin-bottom: 10px; */
+     margin-left: 0px;
+     position: absolute;
+     /* top:; */
+     /* bottom:2rem; */
+     margin-top:-2.5rem;
+     left:100%;
+     transform:rotate(-180deg);
+     transition: all .3s ease;
+}
+
+.eraser.active:hover~ .triangle5{
+    left:110%;
+    transition: all .3s ease;
+    
+}
+
+.eraser.active:hover~ .container-5{
+    left:5rem;
+    transition: all .3s ease;
+}
+
+.number{
+    font-size: 1rem;
+width:100%
+}
+
+.container-5{
+    display: none;
+}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhiteBoard</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+     <!-- Container to cover whole screen and contain header and main body-->
+    <div class="container">
+       
+        <nav>
+            <div class="nav-center">
+              <div class="nav-header">
+                  <img src="https://pbs.twimg.com/media/EIimnXDXsAw4Lzr.png" class="logo" alt="logo">
+                 <button class="nav-toggle">
+                     <i class="fas fa-bars"></i>
+                 </button>
+              </div>  
+    
+              <ul class="links">
+                <li id="save">
+                    <span class="Icon"> <abbr title="Save"> <i class="fas fa-save"></i></abbr></span>
+                </li>
+                <li id="clearAll">
+                    <span class="Icon"> <abbr title="Clear All"> <i class="fas fa-broom"></i> </abbr> </span>
+                </li>
+                <li>
+                    <span class="Icon"> <abbr title="New Board"><i class="fas fa-plus-circle"></i></abbr> </span>
+                </li>
+              </ul>
+            </div>
+        </nav>
+
+        <main>
+
+            <div class="sideBar-fetch"><h3>Tools</h3></div>
+            <aside>
+                <div class="tools pencil" onclick="changeMode('pen')" >
+                    <abbr title="Pencil"><i class="fas fa-pencil-alt"></i></abbr>
+                </div>
+                <div class="triangle"></div>
+                <div class="container-2">
+                    <input type="number" class="number" placeholder="2"  id="penwidth" value="5">
+                    <input type="color" class="colors">
+                </div>
+                <div class="tools eraser" onclick="changeMode('eraser')" >
+                    
+                    <abbr title="Eraser"><i class="fas fa-eraser"></i></i></abbr>
+                </div>
+                <div class="triangle5"></div>
+                <div class="container-5">
+                    <input type="number" class="number" placeholder="2"  id="eraserWidth" value="2">
+                </div>
+                <div class="tools shapes">
+                    <abbr title="shapes"><i class="fas fa-shapes"></i></abbr>
+                </div>
+                <div class="triangle3"></div>
+                <div class="container-3">
+                    <div class="square"><abbr title="square"><i class="far fa-square"></i></abbr></div>
+                    <div class="ellipse">
+                        <abbr title="ellipse"><div></div></abbr>
+                    </div>
+                    <div class="line">
+                        <abbr title="line"><i class="fas fa-grip-lines"></i></abbr>
+                        
+                    </div>
+                    <div class="circle"><abbr title="circle"><i class="far fa-circle"></i></abbr></div>
+                    <div class="rectangle">
+                        <abbr title="rectangle">
+                            <div></div>
+                        </abbr>
+                       
+                    </div>
+                </div>
+                <div class="tools color">
+                    <abbr title="Background Color"><i class="fas fa-palette"></i></abbr>
+                </div>
+                <div class="triangle4"></div>
+                <div class="container-4">
+                    <div class="black"></div>
+                    <div class="red"></div>
+                    <div class="green"></div>
+                    <div class="yellow"></div>
+                    <div class="blue"></div>
+                    <input type="color" class="colors bg">
+                </div>
+                 
+                 <div class="cancel" onclick="changeWidth()">                                    <!-- Pen Width update-->
+                    <i class="fas fa-times"></i>
+                 </div>
+            </aside>
+    
+            <section>
+                <canvas id="canvas"> </canvas>
+            </section>
+            
+        </main>
+       
+
+    </div>
+    
+    
+    <!-- including js file -->
+    <script src="index.js"></script>
+</body>
+</html>
