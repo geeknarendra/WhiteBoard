@@ -21,9 +21,6 @@ const colorInput=document.querySelector(".bg")
 const penColorInput=document.querySelector(".penColors");
 
 
-                 
-
-
 
 toggleBtn.addEventListener("click",()=>{
     links.classList.toggle('show-links');
@@ -44,24 +41,44 @@ cancel.addEventListener("click",slideInTools)
 function slideInTools(){
     sideBarfetch.classList.remove("hide")
     tools.forEach((newTool)=>{
-        newTool.classList.remove("active")
+        if(newTool.classList.contains("acitiveOption")){
+            newTool.classList.add("active")
+        }
+        else{
+
+            newTool.classList.remove("activeOption")
+        }
     })
     toolsBar.classList.remove("show")
 }
 
-console.log(tools)
+
 
 tools.forEach((tool)=>{
+
     tool.addEventListener("click",()=>{
+      
          tools.forEach((newTool)=>{
+
+             newTool.classList.remove("activeOption")
              newTool.classList.remove("active")
          })
-         
-            tool.classList.toggle("active")
-         
+         if(!tool.classList.contains("activeOption")){
+
+            tool.classList.add("activeOption")
+            tool.classList.add("active")
+        }
+
          
     })
+    
+  
+  
 })
+
+
+
+
 
 
 
@@ -251,9 +268,16 @@ canvas.addEventListener("mousemove", draw);
 const undo = document.getElementById("undo");
 undo.addEventListener("click", undoLastPoint);
 
+function reset() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    history = [];
+    index = -1;
+}
+
 function undoLastPoint() {
+    console.log(index);
     if(index <= 0) {
-        clearCanvas();
+        reset();
     } else {
         index--;
         history.pop();
