@@ -240,7 +240,8 @@ button.addEventListener('click', function (e) {
 
 //Clear Page 
 const clearBoard=document.getElementById('clearAll')
-clearBoard.addEventListener("click",clearCanvas)
+clearBoard.addEventListener("click",clearCanvas);
+
 function clearCanvas() {
     var txt;
     var r = confirm("Do you really want to clear the board?");
@@ -282,7 +283,19 @@ function undoLastPoint() {
         reset();
     } else {
         index--;
-        history.pop();
+    
+        ctx.putImageData(history[index], 0, 0);
+    }
+}
+
+// Redo
+const redo = document.getElementById("redo");
+redo.addEventListener("click", redoLastPoint);
+
+function redoLastPoint() {
+    console.log(index);
+    if(index < history.length - 1) {
+        index++;
         ctx.putImageData(history[index], 0, 0);
     }
 }
