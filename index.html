@@ -26,9 +26,9 @@
                   <li id="undo">
                       <span class="Icon"> <abbr title="Undo"><i class="fas fa-undo"></i></abbr> </span>
                   </li>
-                  <li id="redo">
+                  <!-- <li id="redo">
                       <span class="Icon"> <abbr title="Redo"><i class="fas fa-redo"></i></abbr> </span>
-                  </li>
+                  </li> -->
                 <li id="save">
                     <span class="Icon"> <abbr title="Save"> <i class="fas fa-save"></i></abbr></span>
                 </li>
@@ -70,16 +70,17 @@
                 </div>
                 <div class="triangle3"></div>
                 <div class="container-3">
-                    <div class="square"><abbr title="square"><i class="far fa-square"></i></abbr></div>
-                    <div class="ellipse">
+                    
+
+                    <div class="ellipse" onclick="changeMode('ellipse')">
                         <abbr title="ellipse"><div></div></abbr>
                     </div>
-                    <div class="line">
-                        <abbr title="line"><i class="fas fa-grip-lines"></i></abbr>
-                        
+
+                    <div class="line" onclick="changeMode('line')" >
+                        <abbr title="line"><i class="fas fa-grip-lines"></i></abbr>     
                     </div>
-                    <div class="circle"><abbr title="circle"><i class="far fa-circle"></i></abbr></div>
-                    <div class="rectangle">
+             
+                    <div class="rectangle" onclick="changeMode('rectangle')">
                         <abbr title="rectangle">
                             <div></div>
                         </abbr>

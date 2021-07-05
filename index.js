@@ -108,6 +108,10 @@ var eraserWidth;                //Eraser Width
 var penColor = "black";            //Pen Color                 Default is Black
 var eraserColor;                // Easer Color
 var canvasColor = "white";
+var lineStart = undefined;                               // starting point for straight line tool
+var pos2 = { x: undefined, y: undefined };               // starting point for shapes
+
+
 
 // Changing Canvas Backgroung Color;
 bgColorDiv.forEach((color) => {
@@ -154,6 +158,7 @@ function startPaint(e) {
     slideInTools();
     drawing = true;
     draw(e);
+    pos2 = getMousePos(canvas, e);
 }
 
 // MOuse UP
@@ -162,7 +167,9 @@ function endPaint() {
     drawing = false;
     ctx.beginPath();
 
-    history.push(ctx.getImageData(0, 0, 1382, 614));
+    lineStart = undefined;
+    pos2 = undefined; 
+    history.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
     index++;
 }
 
@@ -180,47 +187,82 @@ function getMousePos(canvas, e) {
 
 
 
-// Mouse move In Canvas
+// Move
+
 function draw(e) {
-    if (!drawing) return
-
+    if (!drawing) return;
+  
     var pos = getMousePos(canvas, e);
-    ctx.lineWidth = penwidth;               //Line Width
-    ctx.lineCap = "round";            //Line side cap
-
-    if (mode == "pen") {
-        getWidth()                         //Update Width
-        ctx.strokeStyle = penColor;          // Earser Color Same as BAckgroung
-
-
+    ctx.lineWidth = penwidth; //Line Width
+    ctx.lineCap = "round"; //Line side cap
+    getWidth(); //Update Width
+  
+    switch (mode) {
+      case "pen":
+        ctx.strokeStyle = penColor; // Earser Color Same as BAckgroung
+  
         ctx.lineWidth = penwidth;
         ctx.globalCompositeOperation = "source-over";
-
-        ctx.lineTo(pos.x, pos.y)
+  
+        ctx.lineTo(pos.x, pos.y);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(pos.x, pos.y);
-
-    } else {                                          //Earse 
-
+        break;
+  
+      case "eraser": //Earse
         console.log("Using eraser");
-        getWidth();
         ctx.lineWidth = eraserWidth;
-        ctx.strokeStyle = canvasColor;          // Earser Color Same as BAckgroung
-
+        ctx.strokeStyle = canvasColor; // Earser Color Same as BAckgroung
+  
         ctx.globalCompositeOperation = "destination-out";
-
-        ctx.lineTo(pos.x, pos.y)
+  
+        ctx.lineTo(pos.x, pos.y);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(pos.x, pos.y);
-
-
+        break;
+  
+      case "line":
+        if (lineStart == undefined) lineStart = pos;
+  
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.putImageData(history[index], 0, 0);
+  
+        ctx.strokeStyle = penColor; // Earser Color Same as BAckgroung
+  
+        ctx.lineWidth = penwidth;
+        ctx.globalCompositeOperation = "source-over";
+  
+        ctx.lineTo(lineStart.x, lineStart.y);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(pos.x, pos.y);
+  
+        break;
+  
+      case "rectangle":
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.putImageData(history[index], 0, 0);
+        if (pos2 == undefined) pos2 = pos;
+        ctx.strokeRect(pos2.x, pos2.y, pos.x - pos2.x, pos.y - pos2.y);
+        ctx.stroke();
+        ctx.beginPath();
+  
+        break;
+  
+      case "ellipse":
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.putImageData(history[index], 0, 0);
+  
+          if (pos2 == undefined) pos2 = pos;
+  
+          ctx.ellipse(pos2.x, pos2.y , Math.abs( pos.x - pos2.x), Math.abs(pos.y - pos2.y), 0, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.beginPath();
+          break;
     }
-
-
-}
-
+  }
 
 //Download Board
 var button = document.getElementById("save")
@@ -279,6 +321,7 @@ undo.addEventListener("click", undoLastPoint);
 function reset() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     index = -1;
+    history=[];
 }
 
 function undoLastPoint() {
@@ -287,19 +330,20 @@ function undoLastPoint() {
         reset();
     } else {
         index--;
+        history.pop(); //
 
         ctx.putImageData(history[index], 0, 0);
     }
 }
 
-// Redo
-const redo = document.getElementById("redo");
-redo.addEventListener("click", redoLastPoint);
+// // Redo
+// const redo = document.getElementById("redo");
+// redo.addEventListener("click", redoLastPoint);
 
-function redoLastPoint() {
-    console.log(index);
-    if (index < history.length - 1) {
-        index++;
-        ctx.putImageData(history[index], 0, 0);
-    }
-}
+// function redoLastPoint() {
+//     console.log(index);
+//     if (index < history.length - 1) {
+//         index++;
+//         ctx.putImageData(history[index], 0, 0);
+//     }
+// }
