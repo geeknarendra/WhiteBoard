@@ -1,50 +1,50 @@
-window.onload=function(){
+window.onload = function () {
     var mobile = (/iphone|ipad|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));
     if (mobile) {
-        alert("Visit this on a Computer for Better View and Using Features");              
-    } 
+        alert("Visit this on a Computer for Better View and Using Features");
+    }
 }
 
 
 // importing required components
-const toggleBtn=document.querySelector(".nav-toggle");
-const links=document.querySelector(".links");
+const toggleBtn = document.querySelector(".nav-toggle");
+const links = document.querySelector(".links");
 
-const sideBarfetch=document.querySelector(".sideBar-fetch")
-const toolsBar=document.querySelector("aside")
-const tools=document.querySelectorAll(".tools")
-const cancel=document.querySelector(".cancel")
-const canvasSection=document.querySelector("#canvas")
+const sideBarfetch = document.querySelector(".sideBar-fetch")
+const toolsBar = document.querySelector("aside")
+const tools = document.querySelectorAll(".tools")
+const cancel = document.querySelector(".cancel")
+const canvasSection = document.querySelector("#canvas")
 
-const bgColorDiv=document.querySelectorAll(".container-4 div")
-const colorInput=document.querySelector(".bg")
-const penColorInput=document.querySelector(".penColors");
+const bgColorDiv = document.querySelectorAll(".container-4 div")
+const colorInput = document.querySelector(".bg")
+const penColorInput = document.querySelector(".penColors");
 
 
 
-toggleBtn.addEventListener("click",()=>{
+toggleBtn.addEventListener("click", () => {
     links.classList.toggle('show-links');
 })
 
-sideBarfetch.addEventListener("click",()=>{
+sideBarfetch.addEventListener("click", () => {
     console.log("clicked")
 
     sideBarfetch.classList.add("hide")
     toolsBar.classList.add("show")
 })
- 
+
 
 
 // Slide ToolBar
-cancel.addEventListener("click",slideInTools)
+cancel.addEventListener("click", slideInTools)
 
-function slideInTools(){
+function slideInTools() {
     sideBarfetch.classList.remove("hide")
-    tools.forEach((newTool)=>{
-        if(newTool.classList.contains("acitiveOption")){
+    tools.forEach((newTool) => {
+        if (newTool.classList.contains("acitiveOption")) {
             newTool.classList.add("active")
         }
-        else{
+        else {
 
             newTool.classList.remove("activeOption")
         }
@@ -54,26 +54,26 @@ function slideInTools(){
 
 
 
-tools.forEach((tool)=>{
+tools.forEach((tool) => {
 
-    tool.addEventListener("click",()=>{
-      
-         tools.forEach((newTool)=>{
+    tool.addEventListener("click", () => {
 
-             newTool.classList.remove("activeOption")
-             newTool.classList.remove("active")
-         })
-         if(!tool.classList.contains("activeOption")){
+        tools.forEach((newTool) => {
+
+            newTool.classList.remove("activeOption")
+            newTool.classList.remove("active")
+        })
+        if (!tool.classList.contains("activeOption")) {
 
             tool.classList.add("activeOption")
             tool.classList.add("active")
         }
 
-         
+
     })
-    
-  
-  
+
+
+
 })
 
 
@@ -86,8 +86,8 @@ tools.forEach((tool)=>{
 // Canvas Code 
 
 const canvas = document.getElementById('canvas');
-canvas.style.width ='100%';
-canvas.style.height='100%';
+canvas.style.width = '100%';
+canvas.style.height = '100%';
 canvas.width = canvas.offsetWidth;
 canvas.height = canvas.offsetHeight;
 const ctx = canvas.getContext('2d');
@@ -101,35 +101,35 @@ let index = -1;
 
 
 
-var pencolor="black"            // Pen Color
-var mode="pen"                  //Mode  pen or eraser
+var pencolor = "black"            // Pen Color
+var mode = "pen"                  //Mode  pen or eraser
 var penwidth;                   // Pem Width
 var eraserWidth;                //Eraser Width
-var penColor="black";            //Pen Color                 Default is Black
+var penColor = "black";            //Pen Color                 Default is Black
 var eraserColor;                // Easer Color
-var canvasColor="white";   
+var canvasColor = "white";
 
 // Changing Canvas Backgroung Color;
-bgColorDiv.forEach((color)=>{
-    color.addEventListener("click",()=>{
-        canvasColor=color.getAttribute("class")
-        console.log(canvasColor)    
-      canvasSection.style.backgroundColor=canvasColor;
+bgColorDiv.forEach((color) => {
+    color.addEventListener("click", () => {
+        canvasColor = color.getAttribute("class")
+        console.log(canvasColor)
+        canvasSection.style.backgroundColor = canvasColor;
     })
 })
 
-colorInput.addEventListener("blur",()=>{
-     console.log("clicked")
-     console.log(colorInput.value)
-     canvasColor=colorInput.value;
-     canvasSection.style.backgroundColor=canvasColor;
+colorInput.addEventListener("blur", () => {
+    console.log("clicked")
+    console.log(colorInput.value)
+    canvasColor = colorInput.value;
+    canvasSection.style.backgroundColor = canvasColor;
 })
 
 // Pencolor Change
-penColorInput.addEventListener("blur",()=>{
-     console.log("clicked")
-     console.log(penColorInput.value);
-     penColor=penColorInput.value;
+penColorInput.addEventListener("blur", () => {
+    console.log("clicked")
+    console.log(penColorInput.value);
+    penColor = penColorInput.value;
 })
 
 
@@ -137,15 +137,15 @@ penColorInput.addEventListener("blur",()=>{
 
 
 // Changing Width
-function getWidth(){
-    penwidth=document.getElementById("penwidth").value; 
-    eraserWidth=document.getElementById("eraserWidth").value; 
-    
+function getWidth() {
+    penwidth = document.getElementById("penwidth").value;
+    eraserWidth = document.getElementById("eraserWidth").value;
+
 }
 
 //Changing Mode
-function changeMode(mod){
-    mode=mod;
+function changeMode(mod) {
+    mode = mod;
 
 }
 
@@ -161,10 +161,12 @@ function startPaint(e) {
 function endPaint() {
     drawing = false;
     ctx.beginPath();
-    
+
     history.push(ctx.getImageData(0, 0, 1382, 614));
     index++;
 }
+
+
 // Gives Position Of Mouse
 function getMousePos(canvas, e) {
     var rect = canvas.getBoundingClientRect();
@@ -175,6 +177,9 @@ function getMousePos(canvas, e) {
 }
 
 
+
+
+
 // Mouse move In Canvas
 function draw(e) {
     if (!drawing) return
@@ -183,54 +188,54 @@ function draw(e) {
     ctx.lineWidth = penwidth;               //Line Width
     ctx.lineCap = "round";            //Line side cap
 
-    if(mode=="pen"){   
+    if (mode == "pen") {
         getWidth()                         //Update Width
         ctx.strokeStyle = penColor;          // Earser Color Same as BAckgroung
 
-        
-        ctx.lineWidth = penwidth;  
-        ctx.globalCompositeOperation="source-over";
-    
+
+        ctx.lineWidth = penwidth;
+        ctx.globalCompositeOperation = "source-over";
+
         ctx.lineTo(pos.x, pos.y)
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(pos.x, pos.y);
 
-    }else{                                          //Earse 
+    } else {                                          //Earse 
 
         console.log("Using eraser");
         getWidth();
         ctx.lineWidth = eraserWidth;
-        ctx.strokeStyle =canvasColor;          // Earser Color Same as BAckgroung
+        ctx.strokeStyle = canvasColor;          // Earser Color Same as BAckgroung
 
-        ctx.globalCompositeOperation="destination-out";
-    
+        ctx.globalCompositeOperation = "destination-out";
+
         ctx.lineTo(pos.x, pos.y)
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(pos.x, pos.y);
 
- 
+
     }
-    
+
 
 }
 
 
 //Download Board
-var button =document.getElementById("save")
+var button = document.getElementById("save")
 button.addEventListener('click', function (e) {
 
     console.log("Download");
 
     //Eddge (PG Only)
-    if(window.navigator.msSaveBlob){
-        window.navigator.msSaveBlob(canvas.msToBlob(),"whiteBoard.png");
-    } else{                     //Chrome
-        const a=document.createElement("a");
+    if (window.navigator.msSaveBlob) {
+        window.navigator.msSaveBlob(canvas.msToBlob(), "whiteBoard.png");
+    } else {                     //Chrome
+        const a = document.createElement("a");
         document.body.appendChild(a);
-        a.href=canvas.toDataURL();
-        a.download="whiteBoard.png"
+        a.href = canvas.toDataURL();
+        a.download = "whiteBoard.png"
         a.click();
         document.body.removeChild(a);
     }
@@ -239,16 +244,16 @@ button.addEventListener('click', function (e) {
 });
 
 //Clear Page 
-const clearBoard=document.getElementById('clearAll')
-clearBoard.addEventListener("click",clearCanvas);
+const clearBoard = document.getElementById('clearAll')
+clearBoard.addEventListener("click", clearCanvas);
 
 function clearCanvas() {
     var txt;
     var r = confirm("Do you really want to clear the board?");
     if (r == true) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        history=[];
-        index=-1;
+        history = [];
+        index = -1;
     }
 
 }
@@ -273,17 +278,16 @@ undo.addEventListener("click", undoLastPoint);
 
 function reset() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    history = [];
     index = -1;
 }
 
 function undoLastPoint() {
     console.log(index);
-    if(index <= 0) {
+    if (index <= 0) {
         reset();
     } else {
         index--;
-    
+
         ctx.putImageData(history[index], 0, 0);
     }
 }
@@ -294,7 +298,7 @@ redo.addEventListener("click", redoLastPoint);
 
 function redoLastPoint() {
     console.log(index);
-    if(index < history.length - 1) {
+    if (index < history.length - 1) {
         index++;
         ctx.putImageData(history[index], 0, 0);
     }
