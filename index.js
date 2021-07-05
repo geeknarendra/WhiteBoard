@@ -246,6 +246,8 @@ function clearCanvas() {
     var r = confirm("Do you really want to clear the board?");
     if (r == true) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        history=[];
+        index=-1;
     }
 
 }
