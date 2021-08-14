@@ -1,3 +1,3 @@
 # WhiteBoard
 
-https://team-stack.netlify.app/
+https://my-whiteboard.netlify.app/
